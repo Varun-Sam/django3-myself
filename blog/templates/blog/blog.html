@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<title>Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html
+.bgimg {
+  background-image: url('https://www.hdwallpapers.in/download/sunset_scenery-1080x1920.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}{
+  height: 100%;
+  color: #777;
+  line-height: 1.8;
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
+</style>
+<body class="w3-light-grey">
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <a href="/" class="w3-display-topleft w3-padding-large w3-xlarge active">HOME</a>
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32">
+  <h1><b>MY BLOG</b></h1>
+
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+    {% for obj in object_list %}
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="{{ obj.thumbnail.url }}" alt="Nature" style="width:100%">
+    <div class="w3-container">
+
+      <h3><b>{{ obj.title }}</b></h3>
+
+
+      <h5>{{ obj.overview|linebreaks|truncatechars:200 }} <span class="w3-opacity">{{ obj.timestamp|timesince }} ago</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>{{ obj.description }}</p>
+      <div class="w3-row">
+          <footer class="post-footer d-flex align-items-center">
+            <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." style="width:8%" class="img-fluid"></div>
+              <div class="title"><span><b>{{ obj.author }}</b></span></div></a>
+            <hr>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+    {% endfor %}
+
+
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  {% load static %}
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="{% static 'self/purple.jpg' %}" style="width:100%">
+    <div class="w3-container w3-white">
+      <h4><b>S Varun</b></h4>
+      <p>Just me, myself and I, exploring the universe of Python and would master it, the first framework I chose is Django, there's more to come. I want to share my knowledge with you.</p>
+    </div>
+  </div><hr>
+
+  <!-- Posts -->
+
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Education</h4>
+    </div>
+    {% for edu in colleges_list %}
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+        <!--<img src="{{ education.img.url }}" alt="Image" class="w3-left w3-margin-right" style="width:50px">-->
+        <span class="w3-large">{{ edu.college }}</span><br>
+        <span> {{ edu.college_duration }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+  <hr>
+
+
+
+
+  <!-- Footer -->
+
+
+</body>
+
+</html>
+  <footer class="w3-center w3-black w3-padding-64  w3-hover-opacity-on">
+      <p>&#169; Copyrights Reserved by Varun S</p>
+
+  </footer>
+
+
